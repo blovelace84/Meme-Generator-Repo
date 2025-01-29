@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="meme.css">
+</head>
+<body>
+
+    <!--Attributed Help: ChatGPT: how to let users submit a form on the page to generate new meme on the page.-->
+    <div class="container">
+        <h1>Meme Generator</h1>
+        <form id="memeForm">
+            <label for="topText">Top Text:</label>
+            <input type="text" id="topText" name="topText" required>
+            <label for="bottomText">Bottom Text:</label>
+            <input type="text" id="bottomText" name="bottomText" required>
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" id="imageUrl" name="imageUrl" required>
+            <button type="submit">Generate Meme</button>
+        </form>
+        <div id="memeContainer"></div>
+    </div>
+    <script src="meme.js"></script>
+</body>
+</html>
