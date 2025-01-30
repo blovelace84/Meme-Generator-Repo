@@ -2,6 +2,7 @@ const imageUpload = document.getElementById('imageUpload');
 const topTextInput = document.getElementById('topText');
 const bottomTextInput = document.getElementById('bottomText');
 const generateMemeBtn = document.getElementById('generateMeme');
+const deleteMemeBtn = document.getElementById('deleteMeme');
 const memeCanvas = document.getElementById('memeCanvas');
 const ctx = memeCanvas.getContext('2d');
 
@@ -63,5 +64,11 @@ function drawMeme() {
   ctx.strokeText(bottomText, memeCanvas.width / 2, bottomYPosition);
 }
 
+function deleteMeme() {
+    ctx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
+    uploadedImage = null; //Reset the image
+}
+
 //Generate the Meme
 generateMemeBtn.addEventListener('click', drawMeme);
+deleteMemeBtn.addEventListener('click', deleteMeme);
