@@ -1,48 +1,60 @@
-// Attributed Help: ChatGPT: How to submit the form on the page to generate meme
-document.getElementById('memeForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const topText = document.getElementById('topText').value;
-    const bottomText = document.getElementById('bottomText').value;
-    const imageUrl = document.getElementById('imageUrl').value;
-    
-    const memeContainer = document.getElementById('memeContainer');
-    
-    //Attributed Help: ChatGPT: How to be able to add multiple memes to the page by submitting the form muliple times
+const imageUpload = document.getElementById('imageUpload');
+const topTextInput = document.getElementById('topText');
+const bottomTextInput = document.getElementById('bottomText');
+const generateMemeBtn = document.getElementById('generateMeme');
+const memeCanvas = document.getElementById('memeCanvas');
+const ctx = memeCanvas.getContext('2d');
 
-    const memeDiv = document.createElement('div');
-    memeDiv.className = 'meme';
-    
-    const img = document.createElement('img');
-    img.src = imageUrl;
-    
-    const topTextDiv = document.createElement('div');
-    topTextDiv.className = 'top-text';
-    topTextDiv.textContent = topText;
-    
-    const bottomTextDiv = document.createElement('div');
-    bottomTextDiv.className = 'bottom-text';
-    bottomTextDiv.textContent = bottomText;
+let uploadedImage = null; //Declare at the top with initial value
 
-    //Attrbute Help: ChatGPT: How to add a delete button to delete the meme
+//Handle image upload
+imageUpload.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if(!file) return
+    const reader = new FileReader();
 
-    const deleteButton = document.createElement('button');
-    deleteButton.className = 'delete-button';
-    deleteButton.textContent = 'Delete';
+    reader.onload = (e) => {
+        const img = new Image();
+        img.src = e.target.result;
 
-    deleteButton.addEventListener('click', function(){
-        memeDiv.remove();
-    });
-    
-    memeDiv.appendChild(img);
-    memeDiv.appendChild(topTextDiv);
-    memeDiv.appendChild(bottomTextDiv);
-    memeDiv.appendChild(deleteButton);
-    
-    memeContainer.appendChild(memeDiv);
-    
-    // Attributed Help: ChatGPT: How to clear fields automatically  after the submit button is clicked.
-    document.getElementById('topText').value = '';
-    document.getElementById('bottomText').value = '';
-    document.getElementById('imageUrl').value = '';
+        img.onload = () => {
+            uploadedImage = img;
+            drawMeme();
+        };
+    };
+    reader.readAsDataURL(file);
 });
+
+//Generate the Meme
+generateMemeBtn.addEventListener('click', drawMeme);
+
+function drawMeme() {
+    if (!uploadedImage) {
+        alert('Please upload an image');
+        return;
+    }
+
+    //Clear the canvas
+    ctx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
+
+    //Draw the image
+    ctx.drawImage(uploadedImage, 0, 0, memeCanvas.width, memeCanvas.height);
+
+    // Set text styles
+  ctx.font = '30px Impact';
+  ctx.fillStyle = 'white';
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = 2;
+  ctx.textAlign = 'center';
+
+  // Draw top text
+  const topText = topTextInput.value.toUpperCase();
+  ctx.fillText(topText, memeCanvas.width / 2, 50);
+  ctx.strokeText(topText, memeCanvas.width / 2, 50);
+
+  // Draw bottom text
+  const bottomText = bottomTextInput.value.toUpperCase();
+  const bottomYPosition = memeCanvas.height - 30;
+  ctx.fillText(bottomText, memeCanvas.width / 2, bottomYPosition);
+  ctx.strokeText(bottomText, memeCanvas.width / 2, bottomYPosition);
+}

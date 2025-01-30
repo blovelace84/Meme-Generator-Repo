@@ -1,100 +1,38 @@
-h1 {
-    color: green;
-}
-/*Attributed Help: ChatGPT: How to style the meme to make it look nice.*/
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
-    background: rgb(131,58,180);
-background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-.container {
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    border-radius: 10px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 10px;
-    color: #CD5C5C;
-}
-
-input {
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-.meme {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
-}
-
-.meme img {
-    max-width: 100%;
-    border-radius: 10px;
-}
-
-.meme .top-text,
-.meme .bottom-text {
-    position: absolute;
-    width: 100%;
-    color: white;
     text-align: center;
-    font-weight: bold;
-    font-size: 24px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-}
-
-.meme .top-text {
-    top: 10px;
-}
-
-.meme .bottom-text {
-    bottom: 10px;
-}
-
-.delete-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: plum;
-    color: whitesmoke;
+    background-color: #f9f9f9;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form input, .form button {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 5px 10px;
     cursor: pointer;
-    z-index: 1;
-}
-
-.delete-button:hover {
-    background-color: #c82333;
-}
-
+  }
+  
+  .meme {
+    margin-top: 20px;
+  }
+  
+  canvas {
+    border: 1px solid #ccc;
+  }
