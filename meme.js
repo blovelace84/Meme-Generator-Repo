@@ -67,6 +67,10 @@ function drawMeme() {
 function deleteMeme() {
     ctx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
     uploadedImage = null; //Reset the image
+
+    //Reset the text input fields
+    topTextInput.value = '';
+    bottomTextInput.value = '';
 }
 
 //Generate the Meme
