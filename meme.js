@@ -10,7 +10,7 @@ let uploadedImage = null; //Declare at the top with initial value
 //Handle image upload
 imageUpload.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    if(!file) return
+    if(!file) return;
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -33,19 +33,15 @@ imageUpload.addEventListener('change', (event) => {
     reader.readAsDataURL(file);
 });
 
-//Generate the Meme
-generateMemeBtn.addEventListener('click', drawMeme);
-
+//Draw the meme with both image and text
 function drawMeme() {
     if (!uploadedImage) {
         alert('Please upload an image');
         return;
     }
 
-    //Clear the canvas
+    //Clear the canvas and draw image
     ctx.clearRect(0, 0, memeCanvas.width, memeCanvas.height);
-
-    //Draw the image
     ctx.drawImage(uploadedImage, 0, 0, memeCanvas.width, memeCanvas.height);
 
     // Set text styles
@@ -66,3 +62,6 @@ function drawMeme() {
   ctx.fillText(bottomText, memeCanvas.width / 2, bottomYPosition);
   ctx.strokeText(bottomText, memeCanvas.width / 2, bottomYPosition);
 }
+
+//Generate the Meme
+generateMemeBtn.addEventListener('click', drawMeme);
