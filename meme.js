@@ -11,13 +11,21 @@ let uploadedImage = null; //Declare at the top with initial value
 imageUpload.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if(!file) return
-    const reader = new FileReader();
 
+    const reader = new FileReader();
     reader.onload = (e) => {
         const img = new Image();
         img.src = e.target.result;
 
         img.onload = () => {
+            const maxWidth = 600;
+            const aspectRatio = img.height / img.width;
+            const targetHeight = maxWidth * aspectRatio;
+
+            //Resize canvas to match the target size
+            memeCanvas.width = maxWidth;
+            memeCanvas.height = targetHeight;
+
             uploadedImage = img;
             drawMeme();
         };
