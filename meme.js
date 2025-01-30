@@ -71,6 +71,9 @@ function deleteMeme() {
     //Reset the text input fields
     topTextInput.value = '';
     bottomTextInput.value = '';
+
+    //clear the file input
+    imageUpload.value = '';
 }
 
 //Generate the Meme
